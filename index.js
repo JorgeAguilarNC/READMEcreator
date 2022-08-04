@@ -2,13 +2,10 @@
 const fs = require("fs");
 const util = require("util");
 const inquirer = require("inquirer");
-const generateReadme = require("./utils/generateReadme");
-const writeFileAsync = util.promisify(fs.writeFile);
+const generateMarkdown = require("generateMarkdown.js");
+
 // TODO: Create an array of questions for user input
-const questions = [];
-function promptUser(){
-    return inquirer.prompt([
-        {
+const questions =[{
             type: "input",
             name: "projectTitle",
             message: "What is the project title?",
@@ -41,10 +38,27 @@ function promptUser(){
             message: "Who are the contributors of this projects?"
         },
 // TODO: Create a function to write README file
-function writeToFile(fileName, data) {}
-
+function writeToFile(fileName, data) {
+    fs.writeFile(fileName,data){
+        fs.writeFile(fileName, data, function(err){
+            console.log(fileName)
+            console.log(data)
+            if(err){
+                return console.log(err)
+            }else{
+                console.log("success")
+            }
+        })
+    }
+}
+] 
 // TODO: Create a function to initialize app
-function init() {}
+function init() {
+    inquirer.prompt(questions).then(function(data))
+    {writeToFile("README.md", generatemarkdown(data));
+CSSConditionRule.log(data);
+}
+}
 
 // Function call to initialize app
 init();
