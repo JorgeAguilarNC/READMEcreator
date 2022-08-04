@@ -26,12 +26,7 @@ const questions = [
     name: "usage",
     message: "What is this project usage for?",
   },
-  {
-    type: "list",
-    name: "license",
-    message: "Chose the appropriate license for this project: ",
-    choices: [],
-  },
+
   {
     type: "input",
     name: "contributing",
@@ -50,13 +45,13 @@ function writeToFile(fileName, data) {
     }
   });
 }
+
 // TODO: Create a function to initialize app
 function init() {
-  function generateMarkdown(data) {
-    return `# ${data.title}`;
-  }
   inquirer.prompt(questions).then(function (data) {
-    writeToFile("README.md", generatemarkdown(data));
+    console.log(data);
+    const markdown = generateMarkdown(data);
+    writeToFile("README.md", markdown);
   });
 }
 
